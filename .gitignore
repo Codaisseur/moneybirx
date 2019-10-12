@@ -23,3 +23,4 @@ erl_crash.dump
 money_birx-*.tar
 
 .elixir_ls
+config/dev.exs
