@@ -1,5 +1,7 @@
 # Moneybirx
 
+[![Coverage Status](https://coveralls.io/repos/github/Codaisseur/moneybirx/badge.svg?branch=master)](https://coveralls.io/github/Codaisseur/moneybirx?branch=master)
+
 **TODO: Add description**
 
 ## Installation

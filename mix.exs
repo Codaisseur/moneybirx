@@ -8,7 +8,19 @@ defmodule Moneybirx.MixProject do
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test],
+
+      # Docs
+      name: "Moneybirx",
+      source_url: "https://github.com/Codaisseur/moneybirx",
+      homepage_url: "https://github.com/Codaisseur/moneybirx",
+      docs: [
+        main: "Moneybirx",
+        # logo: "path/to/logo.png",
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -31,6 +43,8 @@ defmodule Moneybirx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:excoveralls, "~> 0.11.2", only: :test},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:httpoison, "~> 1.6"},
       {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
       {:plug_cowboy, "~> 2.0"},
