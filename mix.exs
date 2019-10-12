@@ -32,6 +32,7 @@ defmodule MoneyBirx.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.6"},
+      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 3.1"},
     ]

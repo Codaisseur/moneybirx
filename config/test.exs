@@ -1,4 +1,5 @@
 import Config
 
 config :money_birx,
-  :token, "test"
+  endpoint: "http://localhost:8081",
+  token: "test"

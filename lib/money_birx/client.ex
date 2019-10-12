@@ -5,11 +5,12 @@ defmodule MoneyBirx.Client do
       use HTTPoison.Base
 
       @content_type "application/json"
-      @base_url "https://moneybird.com"
       @version "v2"
 
+      def endpoint, do: Application.get_env(:money_birx, :endpoint, "https://moneybird.com/api/v2")
+
       def process_request_url(path) do
-        "#{@base_url}/api/#{@version}/#{path}.json"
+        endpoint() <> path
       end
 
       def process_request_headers(headers) when is_map(headers) do
@@ -65,11 +66,11 @@ defmodule MoneyBirx.Client do
       end
 
       def create_friendly_error(body) do
-        # do some stuff
+        # TODO: do some stuff
       end
 
       defp moneybird_error(status, message) do
-        # do some stuff
+        # TODO: do some stuff
       end
     end
   end

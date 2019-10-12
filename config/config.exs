@@ -21,6 +21,7 @@ import Config
 #     config :logger, level: :info
 #
 config :money_birx,
+  endpoint: "https://moneybird.com/api/v2",
   token: "your-api-token"
 
 # It is also possible to import configuration files, relative to this

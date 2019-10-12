@@ -1,12 +1,4 @@
-defmodule MoneyBirx.AdministrationBehaviour do
-  @moduledoc false
-  @callback default :: struct | nil
-  @callback all :: {:error, HTTPoison.Error.t()} | {:ok, list(struct)}
-end
-
 defmodule MoneyBirx.Administration do
-  @behaviour MoneyBirx.AdministrationBehaviour
-
   @moduledoc """
   # Moneybird Administrations
 
@@ -58,19 +50,25 @@ defmodule MoneyBirx.Administration do
     :time_zone
   ]
 
-  @spec default :: %Administration{} | nil
+  @doc """
+  Returns the first (default) administration the user has access to.
+  """
+  @spec default :: {:ok, %Administration{}} | {:error, HTTPoison.Error.t()}
   def default do
-    {:ok, administrations} = all()
-    List.first(administrations)
+    with {:ok, administrations} <- all() do
+      {:ok, List.first(administrations)}
+    else
+      {:error, reason} ->
+        {:error, reason}
+    end
   end
 
   @doc """
   Lists all administrations the current user has access to.
-  ```
   """
   @spec all :: {:error, HTTPoison.Error.t()} | {:ok, list(%Administration{})}
   def all do
-    with {:ok, res} <- get("administrations") do
+    with {:ok, res} <- get("/administrations") do
       {:ok, res.body}
     else
       {:error, reason} ->
