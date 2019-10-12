@@ -1,6 +1,6 @@
-defmodule MoneyBirx do
+defmodule Moneybirx do
   @moduledoc """
-  Documentation for MoneyBirx.
+  Documentation for Moneybirx.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule MoneyBirx do
 
   ## Examples
 
-      iex> MoneyBirx.hello()
+      iex> Moneybirx.hello()
       :world
 
   """

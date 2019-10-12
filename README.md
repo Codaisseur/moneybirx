@@ -1,21 +1,21 @@
-# MoneyBirx
+# Moneybirx
 
 **TODO: Add description**
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `money_birx` to your list of dependencies in `mix.exs`:
+by adding `moneybirx` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:money_birx, "~> 0.1.0"}
+    {:moneybirx, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/money_birx](https://hexdocs.pm/money_birx).
+be found at [https://hexdocs.pm/moneybirx](https://hexdocs.pm/moneybirx).
 

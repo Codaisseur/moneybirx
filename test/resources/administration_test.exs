@@ -1,12 +1,12 @@
-defmodule MoneyBirx.AdministrationTest do
+defmodule Moneybirx.AdministrationTest do
   use ExUnit.Case
-  # doctest MoneyBirx
+  # doctest Moneybirx
 
   describe "all" do
     test "returns all the administrations \o/" do
-      assert MoneyBirx.Administration.all() == {:ok,
+      assert Moneybirx.Administration.all() == {:ok,
       [
-        %MoneyBirx.Administration{
+        %Moneybirx.Administration{
           country: "NL",
           currency: "EUR",
           id: 123,
@@ -20,8 +20,8 @@ defmodule MoneyBirx.AdministrationTest do
 
   describe "default" do
     test "returns the first administration \o/" do
-      assert MoneyBirx.Administration.default() == {:ok,
-      %MoneyBirx.Administration{
+      assert Moneybirx.Administration.default() == {:ok,
+      %Moneybirx.Administration{
         country: "NL",
         currency: "EUR",
         id: 123,

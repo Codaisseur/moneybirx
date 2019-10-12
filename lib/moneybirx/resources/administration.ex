@@ -1,4 +1,4 @@
-defmodule MoneyBirx.Administration do
+defmodule Moneybirx.Administration do
   @moduledoc """
   # Moneybird Administrations
 
@@ -24,7 +24,7 @@ defmodule MoneyBirx.Administration do
 
   List all administrations the current user has access to.
 
-      MoneyBirx.Administration.all()
+      Moneybirx.Administration.all()
 
 
   ## The Default Administration
@@ -34,10 +34,10 @@ defmodule MoneyBirx.Administration do
   a single Administration only, so just returning the first one from
   the list seems like a good standard behaviour.
 
-      MoneyBirx.Administration.default()
+      Moneybirx.Administration.default()
 
   """
-  use MoneyBirx.Client
+  use Moneybirx.Client
 
   alias __MODULE__
 

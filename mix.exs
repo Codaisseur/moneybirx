@@ -1,9 +1,9 @@
-defmodule MoneyBirx.MixProject do
+defmodule Moneybirx.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :money_birx,
+      app: :moneybirx,
       version: "0.1.0",
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -20,7 +20,7 @@ defmodule MoneyBirx.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {MoneyBirx.Application, [env: Mix.env]},
+      mod: {Moneybirx.Application, [env: Mix.env]},
       applications: applications(Mix.env)
     ]
   end

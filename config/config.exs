@@ -10,17 +10,17 @@ import Config
 
 # You can configure for your application as:
 #
-#     config :money_birx, key: :value
+#     config :moneybirx, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:money_birx, :key)
+#     Application.get_env(:moneybirx, :key)
 #
 # Or configure a 3rd-party app:
 #
 #     config :logger, level: :info
 #
-config :money_birx,
+config :moneybirx,
   endpoint: "https://moneybird.com/api/v2",
   token: "your-api-token"
 

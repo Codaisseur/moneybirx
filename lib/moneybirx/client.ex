@@ -1,4 +1,4 @@
-defmodule MoneyBirx.Client do
+defmodule Moneybirx.Client do
   @moduledoc false
   defmacro __using__(_) do
     quote do
@@ -7,7 +7,7 @@ defmodule MoneyBirx.Client do
       @content_type "application/json"
       @version "v2"
 
-      def endpoint, do: Application.get_env(:money_birx, :endpoint, "https://moneybird.com/api/v2")
+      def endpoint, do: Application.get_env(:moneybirx, :endpoint, "https://moneybird.com/api/v2")
 
       def process_request_url(path) do
         endpoint() <> path
@@ -56,7 +56,7 @@ defmodule MoneyBirx.Client do
       end
 
       defp http_headers do
-        token = Application.get_env(:money_birx, :token)
+        token = Application.get_env(:moneybirx, :token)
 
         [
           "Accept": @content_type,
