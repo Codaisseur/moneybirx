@@ -1,12 +1,17 @@
+require Logger
+
 defmodule Moneybirx.Contact do
   @moduledoc """
   # Moneybird Contacts
 
-  ## Attributes
+  See [Moneybird's API Documentation](https://developer.moneybird.com/api/contacts) for more info.
 
-  Here is an example Contact.
+  ## Examples
 
-      %Contact{
+  A paginated list of contacts in the administration.
+
+      iex> Moneybirx.Contact.all()
+      {:ok, [%Moneybirx.Contact{
         id: "264861044949649118",
         administration_id: 123,
         company_name: "Foobar Holding B.V.",
@@ -35,49 +40,22 @@ defmodule Moneybirx.Contact do
         sepa_iban_account_name: "",
         sepa_bic: "",
         sepa_mandate_id: "",
-        sepa_mandate_date: null,
+        sepa_mandate_date: nil,
         sepa_sequence_type: "RCUR",
         credit_card_number: "",
         credit_card_reference: "",
-        credit_card_type: null,
-        tax_number_validated_at: null,
-        tax_number_valid: null,
-        invoice_workflow_id: null,
-        estimate_workflow_id: null,
+        credit_card_type: nil,
+        tax_number_validated_at: nil,
+        tax_number_valid: nil,
+        invoice_workflow_id: nil,
+        estimate_workflow_id: nil,
         si_identifier: "",
-        si_identifier_type: null,
+        si_identifier_type: nil,
         created_at: "2019-08-26T09:19:57.675Z",
         updated_at: "2019-08-26T09:19:57.675Z",
         version: 1566811197,
-        sales_invoices_url: "http://moneybird.dev/123/sales_invoices/682edb346851c5a612c6292e8415174369af854274bae742cdfcc649da2b6914/all",
-        notes: [
-
-        ],
-        custom_fields: [
-
-        ],
-        events: [
-          {
-            administration_id: 123,
-            user_id: 15668111646740,
-            action: "contact_created",
-            link_entity_id: null,
-            link_entity_type: null,
-            data: {
-            },
-            created_at: "2019-08-26T09:19:57.688Z",
-            updated_at: "2019-08-26T09:19:57.688Z"
-          }
-        ]
-      }
-
-  See [Moneybird's API Documentation](https://developer.moneybird.com/api/contacts) for more info.
-
-  ## Examples
-
-  A paginated list of contacts in the administration.
-
-      Moneybirx.Contact.all()
+        sales_invoices_url: "http://moneybird.dev/123/sales_invoices/682edb346851c5a612c6292e8415174369af854274bae742cdfcc649da2b6914/all"
+      }]}
 
   Searching for contacts can be done by providing the query parameter with search terms. The API searches for matches in the following contact fields:
 
@@ -161,13 +139,13 @@ defmodule Moneybirx.Contact do
 
   """
   def all(opts \\ %{}) do
-    queryString = []
+    queryString = opts
+    |> Map.keys
+    |> Enum.reduce("?", fn opt, qs ->
+      qs <> "#{opt}=#{opts[opt]}&"
+    end)
 
-    if opts[:page], do: ["page=" <> opts[:page] | queryString]
-    if opts[:per_page], do: ["per_page=" <> opts[:per_page] | queryString]
-    if opts[:query], do: ["query=" <> opts[:query] | queryString]
-
-    with {:ok, res} <- get("/contacts?" <> Enum.join(queryString, "&")) do
+    with {:ok, res} <- get("/contacts" <> queryString) do
       {:ok, res.body}
     else
       {:error, reason} ->

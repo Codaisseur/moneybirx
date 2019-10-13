@@ -1,6 +1,6 @@
 defmodule Moneybirx.ContactTest do
   use ExUnit.Case
-  # doctest Moneybirx
+  doctest Moneybirx.Contact
 
   describe "all" do
     test "returns all the administrations \o/" do

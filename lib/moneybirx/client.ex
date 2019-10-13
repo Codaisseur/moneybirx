@@ -9,12 +9,12 @@ defmodule Moneybirx.Client do
 
       def endpoint, do: Application.get_env(:moneybirx, :endpoint, "https://moneybird.com/api/v2")
 
-      def process_request_url(path) do
+      def process_url(path) do
         if path == "/administrations" do
-          url = endpoint() <> path
+          endpoint() <> path
         else
           {:ok, administration} = Moneybirx.Administration.default()
-          url = endpoint() <> "/" <> "#{administration.id}" <> path
+          endpoint() <> "/" <> "#{administration.id}" <> path
         end
       end
 

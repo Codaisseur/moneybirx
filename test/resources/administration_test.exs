@@ -1,6 +1,6 @@
 defmodule Moneybirx.AdministrationTest do
   use ExUnit.Case
-  # doctest Moneybirx
+  doctest Moneybirx.Administration
 
   describe "all" do
     test "returns all the administrations \o/" do

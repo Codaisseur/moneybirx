@@ -5,26 +5,21 @@ defmodule Moneybirx.Administration do
   The Moneybird Administration is the top level resource under which
   all the other data like contacts, invoices, etc. is found.
 
-  ## Attributes
-
-  Here is an example Administration.
-
-      %Administration{
-        id: 123,
-        name: "Parkietje B.V.",
-        language: "nl",
-        currency: "EUR",
-        country: "NL",
-        time_zone: "Europe/Amsterdam"
-      }
-
   See [Moneybird's API Documentation](https://developer.moneybird.com/api/administration/) for more info.
 
   ## Examples
 
   List all administrations the current user has access to.
 
-      Moneybirx.Administration.all()
+      iex> Moneybirx.Administration.all()
+      {:ok, [%Moneybirx.Administration{
+        id: 123,
+        name: "Parkietje B.V.",
+        language: "nl",
+        currency: "EUR",
+        country: "NL",
+        time_zone: "Europe/Amsterdam"
+      }]}
 
 
   ## The Default Administration
@@ -34,7 +29,15 @@ defmodule Moneybirx.Administration do
   a single Administration only, so just returning the first one from
   the list seems like a good standard behaviour.
 
-      Moneybirx.Administration.default()
+      iex> Moneybirx.Administration.default()
+      {:ok, %Moneybirx.Administration{
+        id: 123,
+        name: "Parkietje B.V.",
+        language: "nl",
+        currency: "EUR",
+        country: "NL",
+        time_zone: "Europe/Amsterdam"
+      }}
 
   """
   use Moneybirx.Client
@@ -52,6 +55,18 @@ defmodule Moneybirx.Administration do
 
   @doc """
   Returns the first (default) administration the user has access to.
+
+  ## Examples
+
+      iex> Moneybirx.Administration.default()
+      {:ok, %Moneybirx.Administration{
+        id: 123,
+        name: "Parkietje B.V.",
+        language: "nl",
+        currency: "EUR",
+        country: "NL",
+        time_zone: "Europe/Amsterdam"
+      }}
   """
   @spec default :: {:ok, %Administration{}} | {:error, HTTPoison.Error.t()}
   def default do
@@ -69,6 +84,18 @@ defmodule Moneybirx.Administration do
 
   @doc """
   Lists all administrations the current user has access to.
+
+  ## Examples
+
+      iex> Moneybirx.Administration.all()
+      {:ok, [%Moneybirx.Administration{
+        id: 123,
+        name: "Parkietje B.V.",
+        language: "nl",
+        currency: "EUR",
+        country: "NL",
+        time_zone: "Europe/Amsterdam"
+      }]}
   """
   @spec all :: {:error, HTTPoison.Error.t()} | {:ok, list(%Administration{})} | {:ok, %Administration{}}
   def all do
