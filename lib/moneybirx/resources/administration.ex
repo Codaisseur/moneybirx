@@ -56,7 +56,11 @@ defmodule Moneybirx.Administration do
   @spec default :: {:ok, %Administration{}} | {:error, HTTPoison.Error.t()}
   def default do
     with {:ok, administrations} <- all() do
-      {:ok, List.first(administrations)}
+      if is_list(administrations) do
+        {:ok, List.first(administrations)}
+      else
+        {:ok, administrations}
+      end
     else
       {:error, reason} ->
         {:error, reason}
@@ -66,7 +70,7 @@ defmodule Moneybirx.Administration do
   @doc """
   Lists all administrations the current user has access to.
   """
-  @spec all :: {:error, HTTPoison.Error.t()} | {:ok, list(%Administration{})}
+  @spec all :: {:error, HTTPoison.Error.t()} | {:ok, list(%Administration{})} | {:ok, %Administration{}}
   def all do
     with {:ok, res} <- get("/administrations") do
       {:ok, res.body}

@@ -1,6 +1,6 @@
 # Moneybirx
 
-[![Coverage Status](https://coveralls.io/repos/github/Codaisseur/moneybirx/badge.svg?branch=refs/heads/master)](https://coveralls.io/github/Codaisseur/moneybirx?branch=refs/heads/master) [![](https://github.com/Codaisseur/moneybirx/workflows/Run%20Tests/badge.svg)](https://github.com/Codaisseur/moneybirx)
+[![Coverage Status](https://coveralls.io/repos/github/Codaisseur/moneybirx/badge.svg?branch=refs/heads/master)](https://coveralls.io/github/Codaisseur/moneybirx?branch=refs/heads/master) [![Test Status](https://github.com/Codaisseur/moneybirx/workflows/Run%20Tests/badge.svg)](https://github.com/Codaisseur/moneybirx)
 
 **TODO: Add description**
 
