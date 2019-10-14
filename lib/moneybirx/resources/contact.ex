@@ -277,11 +277,12 @@ defmodule Moneybirx.Contact do
       ]}
   """
   def all(opts \\ %{}) do
-    queryString = opts
-    |> Map.keys
-    |> Enum.reduce("?", fn opt, qs ->
-      qs <> "#{opt}=#{opts[opt]}&"
-    end)
+    queryString =
+      opts
+      |> Map.keys()
+      |> Enum.reduce("?", fn opt, qs ->
+        qs <> "#{opt}=#{opts[opt]}&"
+      end)
 
     with {:ok, res} <- get("/contacts" <> queryString) do
       {:ok, res.body}
@@ -353,9 +354,71 @@ defmodule Moneybirx.Contact do
     end
   end
 
+  @doc """
+  Create a Contact.
+
+  ## Examples
+
+      iex> Moneybirx.Contact.create(%{"company_name" => "Test B.V."})
+      {:ok, %Moneybirx.Contact{
+        attention: "",
+        sepa_iban_account_name: "",
+        sales_invoices_url:
+          "http://moneybird.dev/123/sales_invoices/236de183d032318bb60f9f8b05181ea80fd695ea67aeb0f8792f39651bcd4574/all",
+        customer_id: "3",
+        city: "",
+        si_identifier_type: nil,
+        id: "264861050065651551",
+        estimate_workflow_id: nil,
+        firstname: "",
+        zipcode: "",
+        send_estimates_to_attention: "",
+        address2: "",
+        sepa_sequence_type: "RCUR",
+        chamber_of_commerce: "",
+        administration_id: 123,
+        sepa_bic: "",
+        created_at: "2019-08-26T09:20:02.581Z",
+        phone: "",
+        tax_number: "",
+        email_ubl: true,
+        company_name: "Test B.V.",
+        tax_number_valid: nil,
+        credit_card_type: nil,
+        sepa_iban: "",
+        si_identifier: "",
+        invoice_workflow_id: nil,
+        sepa_mandate_date: nil,
+        credit_card_number: "",
+        tax_number_validated_at: nil,
+        address1: "",
+        send_invoices_to_attention: "",
+        email: "",
+        lastname: "",
+        country: "NL",
+        updated_at: "2019-08-26T09:20:02.581Z",
+        credit_card_reference: "",
+        bank_account: "",
+        delivery_method: "Email",
+        send_invoices_to_email: "",
+        sepa_active: false,
+        version: 1_566_811_202,
+        send_estimates_to_email: "",
+        sepa_mandate_id: ""
+      }}
+  """
+  def create(params) do
+    with {:ok, res} <- post("/contacts", %{contact: params}) do
+      {:ok, res.body}
+    else
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
   def process_response_body(body) do
     body
-    |> Poison.decode!
+    |> Poison.decode!()
     |> as_struct(Contact)
   end
 end

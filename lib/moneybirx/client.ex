@@ -27,6 +27,10 @@ defmodule Moneybirx.Client do
         Keyword.merge(headers, http_headers())
       end
 
+      def process_request_body(body) do
+        Poison.encode!(body)
+      end
+
       def as_struct(data, type) when is_list(data) do
         Enum.map(data, fn(d) ->
           as_struct(d, type)

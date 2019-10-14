@@ -83,6 +83,17 @@ defmodule Moneybird.MockServer do
     not_found(conn)
   end
 
+  post "/123/contacts" do
+    case conn.params["contact"] do
+      %{"company_name" => "Test B.V."} ->
+        new_contact = fixture("new_contact")
+        created(conn, new_contact)
+      %{"invalid" => "params"} ->
+        failure(conn)
+      true -> failure(conn)
+    end
+  end
+
   def fixture(resource) do
     data = File.read!(Path.expand(__ENV__.file <> "/../fixtures/" <> resource <> ".json"))
     Poison.decode!(data)
@@ -102,13 +113,18 @@ defmodule Moneybird.MockServer do
     |> Plug.Conn.send_resp(200, Poison.encode!(body))
   end
 
+  defp created(conn, body) do
+    conn
+    |> Plug.Conn.send_resp(201, Poison.encode!(body))
+  end
+
   defp not_found(conn) do
     conn
     |> Plug.Conn.send_resp(404, Poison.encode!(%{message: "not found"}))
   end
 
-  # defp failure(conn) do
-  #   conn
-  #   |> Plug.Conn.send_resp(422, Poison.encode!(%{message: "error message"}))
-  # end
+  defp failure(conn) do
+    conn
+    |> Plug.Conn.send_resp(422, Poison.encode!(%{message: "error message"}))
+  end
 end
