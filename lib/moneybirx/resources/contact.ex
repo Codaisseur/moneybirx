@@ -6,77 +6,6 @@ defmodule Moneybirx.Contact do
 
   See [Moneybird's API Documentation](https://developer.moneybird.com/api/contacts) for more info.
 
-  ## Examples
-
-  A paginated list of contacts in the administration.
-
-      iex> Moneybirx.Contact.all()
-      {:ok, [%Moneybirx.Contact{
-        id: "264861044949649118",
-        administration_id: 123,
-        company_name: "Foobar Holding B.V.",
-        firstname: "",
-        lastname: "",
-        address1: "Hoofdstraat 12",
-        address2: "",
-        zipcode: "1234AB",
-        city: "Amsterdam",
-        country: "NL",
-        phone: "",
-        delivery_method: "Email",
-        customer_id: "3",
-        tax_number: "",
-        chamber_of_commerce: "",
-        bank_account: "",
-        attention: "",
-        email: "info@example.com",
-        email_ubl: true,
-        send_invoices_to_attention: "",
-        send_invoices_to_email: "info@example.com",
-        send_estimates_to_attention: "",
-        send_estimates_to_email: "info@example.com",
-        sepa_active: false,
-        sepa_iban: "",
-        sepa_iban_account_name: "",
-        sepa_bic: "",
-        sepa_mandate_id: "",
-        sepa_mandate_date: nil,
-        sepa_sequence_type: "RCUR",
-        credit_card_number: "",
-        credit_card_reference: "",
-        credit_card_type: nil,
-        tax_number_validated_at: nil,
-        tax_number_valid: nil,
-        invoice_workflow_id: nil,
-        estimate_workflow_id: nil,
-        si_identifier: "",
-        si_identifier_type: nil,
-        created_at: "2019-08-26T09:19:57.675Z",
-        updated_at: "2019-08-26T09:19:57.675Z",
-        version: 1566811197,
-        sales_invoices_url: "http://moneybird.dev/123/sales_invoices/682edb346851c5a612c6292e8415174369af854274bae742cdfcc649da2b6914/all"
-      }]}
-
-  Searching for contacts can be done by providing the query parameter with search terms. The API searches for matches in the following contact fields:
-
-  * `company_name`
-  * `attention`
-  * `firstname`
-  * `lastname`
-  * `address1`
-  * `address2`
-  * `zipcode`
-  * `city`
-  * `country`
-  * `email`
-  * `phone`
-  * `customer_id`
-  * `tax_number`
-  * `chamber_of_commerce`
-  * `bank_account`
-
-      Moneybirx.Contact.all(%{query: "Codaisseur"})
-
   """
   use Moneybirx.Client
 
@@ -131,12 +60,221 @@ defmodule Moneybirx.Contact do
   @doc """
   ## Lists all Contacts in the Administration.
 
-  ### Parameters
+  ## Parameters
 
   * `page`, `Integer` – The page number.
   * `per_page`, `Integer`	– Amount of contacts per page (max 100).
   * `query`, `String`	– Search terms. See above for a list of fields being searched.
 
+  ## Examples
+
+      iex> Moneybirx.Contact.all()
+      {:ok, [
+        %Moneybirx.Contact{
+          id: "264861044949649118",
+          administration_id: 123,
+          company_name: "Foobar Holding B.V.",
+          firstname: "",
+          lastname: "",
+          address1: "Hoofdstraat 12",
+          address2: "",
+          zipcode: "1234AB",
+          city: "Amsterdam",
+          country: "NL",
+          phone: "",
+          delivery_method: "Email",
+          customer_id: "3",
+          tax_number: "",
+          chamber_of_commerce: "",
+          bank_account: "",
+          attention: "",
+          email: "info@example.com",
+          email_ubl: true,
+          send_invoices_to_attention: "",
+          send_invoices_to_email: "info@example.com",
+          send_estimates_to_attention: "",
+          send_estimates_to_email: "info@example.com",
+          sepa_active: false,
+          sepa_iban: "",
+          sepa_iban_account_name: "",
+          sepa_bic: "",
+          sepa_mandate_id: "",
+          sepa_mandate_date: nil,
+          sepa_sequence_type: "RCUR",
+          credit_card_number: "",
+          credit_card_reference: "",
+          credit_card_type: nil,
+          tax_number_validated_at: nil,
+          tax_number_valid: nil,
+          invoice_workflow_id: nil,
+          estimate_workflow_id: nil,
+          si_identifier: "",
+          si_identifier_type: nil,
+          created_at: "2019-08-26T09:19:57.675Z",
+          updated_at: "2019-08-26T09:19:57.675Z",
+          version: 1566811197,
+          sales_invoices_url: "http://moneybird.dev/123/sales_invoices/682edb346851c5a612c6292e8415174369af854274bae742cdfcc649da2b6914/all",
+        },
+        %Moneybirx.Contact{
+          id: "264861044858423000",
+          administration_id: 123,
+          company_name: "Foobar Holding B.V.",
+          firstname: "John",
+          lastname: "Appleseed",
+          address1: "Hoofdstraat 12",
+          address2: "",
+          zipcode: "1234 AB",
+          city: "Amsterdam",
+          country: "NL",
+          phone: "",
+          delivery_method: "Email",
+          customer_id: "1",
+          tax_number: "",
+          chamber_of_commerce: "",
+          bank_account: "",
+          attention: "",
+          email: "info@example.com",
+          email_ubl: true,
+          send_invoices_to_attention: "",
+          send_invoices_to_email: "info@example.com",
+          send_estimates_to_attention: "",
+          send_estimates_to_email: "info@example.com",
+          sepa_active: false,
+          sepa_iban: "",
+          sepa_iban_account_name: "",
+          sepa_bic: "",
+          sepa_mandate_id: "",
+          sepa_mandate_date: nil,
+          sepa_sequence_type: "RCUR",
+          credit_card_number: "",
+          credit_card_reference: "",
+          credit_card_type: nil,
+          tax_number_validated_at: nil,
+          tax_number_valid: nil,
+          invoice_workflow_id: nil,
+          estimate_workflow_id: nil,
+          si_identifier: "",
+          si_identifier_type: nil,
+          created_at: "2019-08-26T09:19:57.588Z",
+          updated_at: "2019-08-26T09:19:57.588Z",
+          version: 1566811197,
+          sales_invoices_url: "http://moneybird.dev/123/sales_invoices/e0a3d1d96784a6fe490e29b24b3fc9f40f0a57bb3786912ac67d3b9983f3043b/all",
+        },
+        %Moneybirx.Contact{
+          id: "264861044912948955",
+          administration_id: 123,
+          company_name: "Foobar Holding B.V.",
+          firstname: "John",
+          lastname: "Doe",
+          address1: "1 Infinite Loop",
+          address2: "",
+          zipcode: "123456",
+          city: "Redmond",
+          country: "NL",
+          phone: "",
+          delivery_method: "Email",
+          customer_id: "2",
+          tax_number: "",
+          chamber_of_commerce: "",
+          bank_account: "NL50TEST0166567191",
+          attention: "",
+          email: "info@example.com",
+          email_ubl: true,
+          send_invoices_to_attention: "",
+          send_invoices_to_email: "info@example.com",
+          send_estimates_to_attention: "",
+          send_estimates_to_email: "info@example.com",
+          sepa_active: true,
+          sepa_iban: "NL50TEST0166567191",
+          sepa_iban_account_name: "Foobar Holding B.V.",
+          sepa_bic: "RABONL2U",
+          sepa_mandate_id: "MAN12313",
+          sepa_mandate_date: "2014-01-01",
+          sepa_sequence_type: "RCUR",
+          credit_card_number: "",
+          credit_card_reference: "",
+          credit_card_type: nil,
+          tax_number_validated_at: nil,
+          tax_number_valid: nil,
+          invoice_workflow_id: nil,
+          estimate_workflow_id: nil,
+          si_identifier: "",
+          si_identifier_type: nil,
+          created_at: "2019-08-26T09:19:57.639Z",
+          updated_at: "2019-08-26T09:19:57.639Z",
+          version: 1566811197,
+          sales_invoices_url: "http://moneybird.dev/123/sales_invoices/d4f20db01b1aafe2f1f1fcb5b56adb1592958feb3e2dce4e1d98d2ecd3df7e3b/all",
+        }
+      ]}
+
+  ## Search Query
+
+  Searching for contacts can be done by providing the query parameter with search terms. The API searches for matches in the following contact fields:
+
+  * `company_name`
+  * `attention`
+  * `firstname`
+  * `lastname`
+  * `address1`
+  * `address2`
+  * `zipcode`
+  * `city`
+  * `country`
+  * `email`
+  * `phone`
+  * `customer_id`
+  * `tax_number`
+  * `chamber_of_commerce`
+  * `bank_account`
+
+      iex> Moneybirx.Contact.all(%{query: "Appleseed"})
+      {:ok, [
+        %Moneybirx.Contact{
+          id: "264861044858423000",
+          administration_id: 123,
+          company_name: "Foobar Holding B.V.",
+          firstname: "John",
+          lastname: "Appleseed",
+          address1: "Hoofdstraat 12",
+          address2: "",
+          zipcode: "1234 AB",
+          city: "Amsterdam",
+          country: "NL",
+          phone: "",
+          delivery_method: "Email",
+          customer_id: "1",
+          tax_number: "",
+          chamber_of_commerce: "",
+          bank_account: "",
+          attention: "",
+          email: "info@example.com",
+          email_ubl: true,
+          send_invoices_to_attention: "",
+          send_invoices_to_email: "info@example.com",
+          send_estimates_to_attention: "",
+          send_estimates_to_email: "info@example.com",
+          sepa_active: false,
+          sepa_iban: "",
+          sepa_iban_account_name: "",
+          sepa_bic: "",
+          sepa_mandate_id: "",
+          sepa_mandate_date: nil,
+          sepa_sequence_type: "RCUR",
+          credit_card_number: "",
+          credit_card_reference: "",
+          credit_card_type: nil,
+          tax_number_validated_at: nil,
+          tax_number_valid: nil,
+          invoice_workflow_id: nil,
+          estimate_workflow_id: nil,
+          si_identifier: "",
+          si_identifier_type: nil,
+          created_at: "2019-08-26T09:19:57.588Z",
+          updated_at: "2019-08-26T09:19:57.588Z",
+          version: 1566811197,
+          sales_invoices_url: "http://moneybird.dev/123/sales_invoices/e0a3d1d96784a6fe490e29b24b3fc9f40f0a57bb3786912ac67d3b9983f3043b/all",
+        }
+      ]}
   """
   def all(opts \\ %{}) do
     queryString = opts
