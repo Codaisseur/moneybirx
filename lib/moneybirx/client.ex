@@ -39,24 +39,22 @@ defmodule Moneybirx.Client do
         end))
       end
 
-      defp handle_response(resp) do
+      def process_response(resp) do
         case resp do
-          {:ok, %{body: body, status_code: 200}} ->
-            {:ok, body}
-          {:ok, %{body: body, status_code: 201}} ->
-            {:ok, body}
-          {:ok, %{body: body, status_code: 204}} ->
-            {:ok, body}
-          {:ok, %{body: body, status_code: 301}} ->
-              {:ok, body}
-          {:ok, %{body: body, status_code: 404}} ->
-            {:error, create_friendly_error(body)}
-          {:ok, %{body: body, status_code: 422}} ->
-            {:error, create_friendly_error(body)}
-          {:ok, %{body: body, status_code: status}} ->
-            moneybird_error(status, body["message"])
-          {:error, error} ->
-            moneybird_error(error.id, error.reason)
+          %{status_code: 200} ->
+            resp
+          %{status_code: 201} ->
+            resp
+          %{status_code: 204} ->
+            resp
+          %{status_code: 301} ->
+            resp
+          %{status_code: 404} ->
+            raise Moneybirx.NotFoundError
+          %{body: body, status_code: 422} ->
+            raise Moneybirx.RequestError, Poison.decode!(body)
+          resp ->
+            raise Moneybirx.ServerError
         end
       end
 
@@ -71,7 +69,7 @@ defmodule Moneybirx.Client do
       end
 
       def create_friendly_error(body) do
-        # TODO: do some stuff
+        Poison.decode!(body)
       end
 
       defp moneybird_error(status, message) do
@@ -79,4 +77,16 @@ defmodule Moneybirx.Client do
       end
     end
   end
+end
+
+defmodule Moneybirx.NotFoundError do
+  defexception message: "Moneybird resource not found"
+end
+
+defmodule Moneybirx.RequestError do
+  defexception message: "Moneybird request error"
+end
+
+defmodule Moneybirx.ServerError do
+  defexception message: "Moneybird server error"
 end
