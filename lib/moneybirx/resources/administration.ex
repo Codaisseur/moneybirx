@@ -97,7 +97,10 @@ defmodule Moneybirx.Administration do
         time_zone: "Europe/Amsterdam"
       }]}
   """
-  @spec all :: {:error, HTTPoison.Error.t()} | {:ok, list(%Administration{})} | {:ok, %Administration{}}
+  @spec all ::
+          {:error, HTTPoison.Error.t()}
+          | {:ok, list(%Administration{})}
+          | {:ok, %Administration{}}
   def all do
     with {:ok, res} <- get("/administrations") do
       {:ok, res.body}
@@ -109,7 +112,7 @@ defmodule Moneybirx.Administration do
 
   def process_response_body(body) do
     body
-    |> Poison.decode!
+    |> Poison.decode!()
     |> as_struct(Administration)
   end
 end

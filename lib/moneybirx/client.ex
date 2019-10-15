@@ -31,32 +31,43 @@ defmodule Moneybirx.Client do
         Poison.encode!(body)
       end
 
+      def as_struct(data, _) when is_nil(data), do: nil
+
       def as_struct(data, type) when is_list(data) do
-        Enum.map(data, fn(d) ->
+        Enum.map(data, fn d ->
           as_struct(d, type)
         end)
       end
 
       def as_struct(data, type) do
-        struct(type, Enum.map(data, fn({k, v}) ->
-          {String.to_atom(k), v}
-        end))
+        struct(
+          type,
+          Enum.map(data, fn {k, v} ->
+            {String.to_atom(k), v}
+          end)
+        )
       end
 
       def process_response(resp) do
         case resp do
           %{status_code: 200} ->
             resp
+
           %{status_code: 201} ->
             resp
+
           %{status_code: 204} ->
             resp
+
           %{status_code: 301} ->
             resp
+
           %{status_code: 404} ->
             raise Moneybirx.NotFoundError
+
           %{body: body, status_code: 422} ->
             raise Moneybirx.RequestError, Poison.decode!(body)
+
           resp ->
             raise Moneybirx.ServerError
         end
@@ -66,9 +77,9 @@ defmodule Moneybirx.Client do
         token = Application.get_env(:moneybirx, :token)
 
         [
-          "Accept": @content_type,
-          "Authorization": "Bearer #{token}",
-          "Content-Type": @content_type,
+          Accept: @content_type,
+          Authorization: "Bearer #{token}",
+          "Content-Type": @content_type
         ]
       end
 

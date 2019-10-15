@@ -1,0 +1,9 @@
+{
+  "sales_invoice": {
+    "reference": "30052",
+    "contact_id": 264861203795281549,
+    "details_attributes": [
+      { "description": "Rocking Chair", "price": 129.95 }
+    ]
+  }
+}
