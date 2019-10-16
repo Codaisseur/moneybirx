@@ -60,7 +60,11 @@ defmodule Moneybirx.MixProject do
   defp docs do
     [
       main: "Moneybirx",
-      extras: ["README.md"]
+      extras: [
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE.md"
+      ]
     ]
   end
 end
