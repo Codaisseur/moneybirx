@@ -14,13 +14,11 @@ defmodule Moneybirx.MixProject do
 
       # Docs
       name: "Moneybirx",
+      description: "Unofficial Moneybird API client written in Elixir",
       source_url: "https://github.com/Codaisseur/moneybirx",
       homepage_url: "https://github.com/Codaisseur/moneybirx",
-      docs: [
-        main: "Moneybirx",
-        # logo: "path/to/logo.png",
-        extras: ["README.md"]
-      ]
+      docs: docs(),
+      package: package()
     ]
   end
 
@@ -49,6 +47,20 @@ defmodule Moneybirx.MixProject do
       {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 3.1"},
+    ]
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/Codaisseur/moneybirx"}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "Moneybirx",
+      extras: ["README.md"]
     ]
   end
 end
