@@ -30,4 +30,11 @@ defmodule Moneybirx.SalesInvoiceTest do
                {:ok, fixture("new_sales_invoice", SalesInvoice)}
     end
   end
+
+  describe "send_invoice" do
+    test "returns the sent invoice" do
+      assert SalesInvoice.send_invoice("264861210015434486") ==
+        {:ok, fixture("sent_sales_invoice", SalesInvoice)}
+    end
+  end
 end

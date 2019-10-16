@@ -145,6 +145,7 @@ defmodule Moneybirx.SalesInvoice do
   use Moneybirx.Client
 
   alias __MODULE__
+
   alias Moneybirx.{
     Contact,
     SalesInvoiceDetails
@@ -221,6 +222,7 @@ defmodule Moneybirx.SalesInvoice do
   * `workflow_id`	`Integer` –	 	Select invoices that use a certain workflow
 
       Moneybirx.SalesInvoice.all(%{filter: "period:this_month"})
+
   """
   def all(opts \\ %{}) do
     queryString =
@@ -262,9 +264,37 @@ defmodule Moneybirx.SalesInvoice do
   ## Examples
 
       Moneybirx.SalesInvoice.create(%{"valid" => "params"})
+
   """
   def create(params) do
     with {:ok, res} <- post("/sales_invoices", %{sales_invoice: params}) do
+      {:ok, res.body}
+    else
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  @doc """
+  # Send and Invoice
+
+  This endpoint provides two options: sending the invoice and scheduling sending in the future. When sending now, you can provide a send method, email address and message. If you don’t provide any arguments, the defaults from the contact and workflow will be used.
+
+  When scheduling sending, set the boolean sending_scheduled to true and provide an invoice_date.
+
+  ## PARAMETERS
+
+  * `delivery_method`, `String` – Can be `"Email"`, `"Simplerinvoicing"`, `"Post"` or `"Manual"`.
+  * `sending_scheduled`, `Boolean`
+  * `deliver_ubl`, `Boolean`
+  * `mergeable`, `Boolean`
+  * `email_address`, `String`
+  * `email_message`, `String`
+  * `invoice_date`, `String`
+
+  """
+  def send_invoice(id, params \\%{}) do
+    with {:ok, res} <- patch("/sales_invoices/" <> id <> "/send_invoice", %{sales_invoice_sending: params}) do
       {:ok, res.body}
     else
       {:error, reason} ->

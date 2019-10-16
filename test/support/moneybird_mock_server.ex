@@ -99,6 +99,10 @@ defmodule Moneybird.MockServer do
     end
   end
 
+  patch "/123/sales_invoices/264861210015434486/send_invoice" do
+    success(conn, fixture("sent_sales_invoice"))
+  end
+
   def fixture(resource) do
     data = File.read!(Path.expand(__ENV__.file <> "/../fixtures/" <> resource <> ".json"))
     Poison.decode!(data)
