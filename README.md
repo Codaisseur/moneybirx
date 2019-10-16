@@ -11,7 +11,7 @@ The package can be installed by adding `moneybirx` to your list of dependencies 
 ```elixir
 def deps do
   [
-    {:moneybirx, "~> 0.1.0"}
+    {:moneybirx, "~> 0.1.1"}
   ]
 end
 ```

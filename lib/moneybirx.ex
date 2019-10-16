@@ -8,7 +8,7 @@ defmodule Moneybirx do
 
       def deps do
         [
-          {:moneybirx, "~> 0.1.0"}
+          {:moneybirx, "~> 0.1.1"}
         ]
       end
 
