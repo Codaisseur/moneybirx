@@ -103,6 +103,41 @@ defmodule Moneybird.MockServer do
     success(conn, fixture("sent_sales_invoice"))
   end
 
+  get "/123/recurring_sales_invoices" do
+    case conn.query_params do
+      %{"filter" => "frequency:month"} ->
+        success(conn, fixture("filtered_recurring_sales_invoices"))
+
+      %{} ->
+        recurring_sales_invoices = fixture("all_recurring_sales_invoices")
+        success(conn, recurring_sales_invoices)
+    end
+  end
+
+  get "/123/recurring_sales_invoices/264861180704589127" do
+    recurring_sales_invoice = fixture("one_recurring_sales_invoice")
+    success(conn, recurring_sales_invoice)
+  end
+
+  get "/123/recurring_sales_invoices/:missing" do
+    not_found(conn)
+  end
+
+  post "/123/recurring_sales_invoices" do
+    case conn.params["recurring_sales_invoice"] do
+      %{"valid" => "params"} ->
+        new_recurring_sales_invoice = fixture("new_recurring_sales_invoice")
+        created(conn, new_recurring_sales_invoice)
+
+      %{"invalid" => "params"} ->
+        failure(conn)
+
+      true ->
+        new_recurring_sales_invoice = fixture("new_recurring_sales_invoice")
+        created(conn, new_recurring_sales_invoice)
+    end
+  end
+
   def fixture(resource) do
     data = File.read!(Path.expand(__ENV__.file <> "/../fixtures/" <> resource <> ".json"))
     Poison.decode!(data)
