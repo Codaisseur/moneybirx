@@ -62,8 +62,7 @@ defmodule Moneybirx.MixProject do
       main: "Moneybirx",
       extras: [
         "README.md",
-        "CHANGELOG.md",
-        "LICENSE.md"
+        "CHANGELOG.md"
       ]
     ]
   end
