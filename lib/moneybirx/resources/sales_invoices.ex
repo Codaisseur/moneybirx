@@ -259,6 +259,23 @@ defmodule Moneybirx.SalesInvoice do
   end
 
   @doc """
+  Find a SalesInvoice by it's `invoice_id`.
+
+  ## Examples
+
+      Moneybirx.SalesInvoice.find_by_invoice_id("2020-0001")
+
+  """
+  def find_by_invoice_id(invoice_id) do
+    with {:ok, res} <- get("/sales_invoices/find_by_invoice_id/" <> invoice_id) do
+      {:ok, res.body}
+    else
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  @doc """
   Create a SalesInvoice.
 
   ## Examples
