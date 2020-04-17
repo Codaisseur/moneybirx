@@ -325,6 +325,7 @@ defmodule Moneybirx.SalesInvoice do
     |> as_struct(SalesInvoice)
     |> process_contact_body()
     |> process_details_body()
+    |> process_payments_body()
   end
 
   def process_details_body(invoices) when is_list(invoices) do
@@ -338,6 +339,19 @@ defmodule Moneybirx.SalesInvoice do
       |> as_struct(SalesInvoiceDetails)
 
     %SalesInvoice{invoice | details: details}
+  end
+
+  def process_payments_body(invoices) when is_list(invoices) do
+    invoices
+    |> Enum.map(&process_payments_body/1)
+  end
+
+  def process_payments_body(invoice) do
+    payments =
+      invoice.payments
+      |> as_struct(SalesInvoicePayment)
+
+    %SalesInvoice{invoice | payments: payments}
   end
 
   def process_contact_body(invoices) when is_list(invoices) do
@@ -372,5 +386,25 @@ defmodule Moneybirx.SalesInvoiceDetails do
     :tax_report_reference,
     :created_at,
     :updated_at
+  ]
+end
+
+defmodule Moneybirx.SalesInvoicePayment do
+  defstruct [
+    :id,
+    :administration_id,
+    :invoice_type,
+    :invoice_id,
+    :financial_account_id,
+    :user_id,
+    :payment_transaction_id,
+    :transaction_identifier,
+    :price,
+    :price_base,
+    :payment_date,
+    :credit_invoice_id,
+    :financial_mutation_id,
+    :created_at,
+    :updated_at,
   ]
 end
