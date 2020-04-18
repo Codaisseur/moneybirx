@@ -148,7 +148,8 @@ defmodule Moneybirx.SalesInvoice do
 
   alias Moneybirx.{
     Contact,
-    SalesInvoiceDetails
+    SalesInvoiceDetails,
+    SalesInvoicePayment
   }
 
   defstruct [
