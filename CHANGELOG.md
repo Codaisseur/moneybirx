@@ -1,6 +1,6 @@
 # Changelog
 
-## 2020-04-17 v0.1.4 - Add Payments
+## 2020-04-17 v0.1.5 - Add Payments
 
 Parse payments on invoices.
 
