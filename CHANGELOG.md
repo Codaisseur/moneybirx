@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-07-13 v0.1.6 - Add External Invoices
+
+Add support for External Invoices, e.g. invoices that were added to the administration by an external or 3rd party system.
+
 ## 2020-04-17 v0.1.5 - Add Payments
 
 Parse payments on invoices.
