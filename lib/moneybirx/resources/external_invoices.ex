@@ -116,7 +116,7 @@ defmodule Moneybirx.ExternalInvoice do
         ]
       }
 
-  See [Moneybird's API Documentation](https://developer.moneybird.com/api/external_invoices) for more info.
+  See [Moneybird's API Documentation](https://developer.moneybird.com/api/external_sales_invoices) for more info.
 
   """
   use Moneybirx.Client
@@ -169,7 +169,7 @@ defmodule Moneybirx.ExternalInvoice do
   ## Parameters
 
   * `page`, `Integer` – The page number.
-  * `per_page`, `Integer`	– Amount of external_invoices per page (max 100).
+  * `per_page`, `Integer`	– Amount of external_sales_invoices per page (max 100).
   * `filter`, `String`	– Search terms. See below for a list of fields being filtered.
 
   ## Examples
@@ -196,7 +196,7 @@ defmodule Moneybirx.ExternalInvoice do
         qs <> "#{opt}=#{value}&"
       end)
 
-    with {:ok, res} <- get("/external_invoices" <> queryString) do
+    with {:ok, res} <- get("/external_sales_invoices" <> queryString) do
       {:ok, res.body}
     else
       {:error, reason} ->
@@ -213,7 +213,7 @@ defmodule Moneybirx.ExternalInvoice do
 
   """
   def find(id) do
-    with {:ok, res} <- get("/external_invoices/" <> id) do
+    with {:ok, res} <- get("/external_sales_invoices/" <> id) do
       {:ok, res.body}
     else
       {:error, reason} ->
@@ -230,7 +230,7 @@ defmodule Moneybirx.ExternalInvoice do
 
   """
   def create(params) do
-    with {:ok, res} <- post("/external_invoices", %{sales_invoice: params}) do
+    with {:ok, res} <- post("/external_sales_invoices", %{sales_invoice: params}) do
       {:ok, res.body}
     else
       {:error, reason} ->
