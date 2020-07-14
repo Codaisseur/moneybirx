@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-07-14 v0.1.7 - Fix path to external invoices
+
+Fixes an issue where the path to the external invoices resource was wrong.
+
 ## 2020-07-13 v0.1.6 - Add External Invoices
 
 Add support for External Invoices, e.g. invoices that were added to the administration by an external or 3rd party system.
