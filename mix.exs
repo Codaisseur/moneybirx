@@ -41,12 +41,12 @@ defmodule Moneybirx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:excoveralls, "~> 0.11.2", only: :test},
+      {:excoveralls, "~> 0.13.0", only: :test},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
-      {:httpoison, "~> 1.6"},
-      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
+      {:httpoison, "~> 1.7"},
+      {:mix_test_watch, ">= 0.8.0", only: :dev, runtime: false},
       {:plug_cowboy, "~> 2.0"},
-      {:poison, "~> 3.1"},
+      {:poison, ">= 1.3.0"},
     ]
   end
 
